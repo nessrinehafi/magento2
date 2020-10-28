@@ -3,10 +3,7 @@ node{
   stage('prep'){
     echo "hello"
   }
-  
-  stage('Composer'){
-    sh "composer update"
-  }
+
   stage ('Clean Cache'){
     sh"php bin/magento cache:clean"
   }
