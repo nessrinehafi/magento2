@@ -28,7 +28,7 @@ node{
    stage ('Nginx'){
     sh" sudo chown -R www-data: ."
     sh" sudo chmod -R 775 ."
-    sh" service nginx restart"
+    sh" sudo service nginx restart"
    }
     
 }
