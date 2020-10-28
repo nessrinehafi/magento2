@@ -5,19 +5,19 @@ node{
   }
 
   stage ('Clean Cache'){
-    sh"php bin/magento cache:clean"
+    sh"sudo php bin/magento cache:clean"
   }
      stage ('Upgrade'){
-    sh "bin/magento setup:upgrade"
+    sh "sudo bin/magento setup:upgrade"
   }
    stage ('Build'){
-    sh "bin/magento setup:di:compile"
+    sh "sudo bin/magento setup:di:compile"
   }
   
    stage ('Deploy'){
-    sh "php bin/magento setup:static-content:deploy en_US ar_SA --force"
-    sh"php bin/magento cache:clean"
-    sh" php bin/magento indexer:reindex"
+    sh "sudo php bin/magento setup:static-content:deploy en_US ar_SA --force"
+    sh"sudo php bin/magento cache:clean"
+    sh" sudo php bin/magento indexer:reindex"
   }
   
    stage ('Nginx'){
