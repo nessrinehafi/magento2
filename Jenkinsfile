@@ -1,5 +1,5 @@
 node{
-    deleteDit()
+    deleteDir()
   stage('prep'){
     echo "hello"
   }
