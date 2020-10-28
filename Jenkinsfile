@@ -9,19 +9,26 @@ node{
   stage('Composer'){
     sh "composer install"
   }
-  stage ('test'){
-    echo "Testing"
+  stage ('Clean Cache'){
+    sh"php bin/magento cache:clean"
+  }
+     stage ('Upgrade'){
+    sh "bin/magento setup:upgrade"
   }
    stage ('Build'){
     sh "bin/magento setup:di:compile"
   }
   
    stage ('Deploy'){
-    sh "bin/magento setup:static-content:deploy -f"
+    sh "php bin/magento setup:static-content:deploy en_US ar_SA --force"
+    sh"php bin/magento cache:clean"
+    sh" php bin/magento indexer:reindex"
   }
   
-   stage ('Maintain'){
-    sh "bin/magento maintenance:enable"
-  }
+   stage ('Nginx'){
+    sh" chown -R www-data: ."
+    sh" chmod -R 775 ."
+    sh" service nginx restart"
+   }
     
 }
