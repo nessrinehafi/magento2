@@ -1,5 +1,4 @@
 node{
-    deleteDir()
   stage('prep'){
     echo "hello"
   }
