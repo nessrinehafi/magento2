@@ -8,7 +8,7 @@ node{
     checkout scm
   }
   stage('Composer'){
-    sh "composer install"
+    sh "composer update"
   }
   stage ('Clean Cache'){
     sh"php bin/magento cache:clean"
